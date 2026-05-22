@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch4jConfig>
+  <dontWrapJar>false</dontWrapJar>
+  <headerType>gui</headerType>
+  <jar>C:\Users\myste\IdeaProjects\Budgeting tool\out\artifacts\Budgeting_tool_jar\Budgeting tool.jar</jar>
+  <outfile>C:\Users\myste\OneDrive\Desktop\Budgeting tool.exe</outfile>
+  <errTitle></errTitle>
+  <cmdLine></cmdLine>
+  <chdir>.</chdir>
+  <priority>normal</priority>
+  <downloadUrl></downloadUrl>
+  <supportUrl></supportUrl>
+  <stayAlive>false</stayAlive>
+  <restartOnCrash>true</restartOnCrash>
+  <manifest></manifest>
+  <icon>E:\Documents\Budget-Tracker\Desktop\Savings Tracker Icon.ico</icon>
+  <jre>
+    <path>%JAVA_HOME%;%PATH%</path>
+    <requiresJdk>false</requiresJdk>
+    <requires64Bit>false</requires64Bit>
+    <minVersion>1.8.0</minVersion>
+    <maxVersion></maxVersion>
+  </jre>
+  <versionInfo>
+    <fileVersion>3.0.0.0</fileVersion>
+    <txtFileVersion>3.0</txtFileVersion>
+    <fileDescription>Budget Tracker</fileDescription>
+    <copyright>Copyright 2025 MysteGUI</copyright>
+    <productVersion>3.0.0.0</productVersion>
+    <txtProductVersion>3.0</txtProductVersion>
+    <productName>Budget Tracker</productName>
+    <companyName>MysteGUI</companyName>
+    <internalName>BudgetTracker</internalName>
+    <originalFilename>BudgetTracker.exe</originalFilename>
+    <trademarks></trademarks>
+    <language>ENGLISH_US</language>
+  </versionInfo>
+  <messages>
+    <startupErr>Failed to start Student Budget Tracker. Please try again.</startupErr>
+    <jreNotFoundErr>Java is required to run this app. Download it free at adoptium.net</jreNotFoundErr>
+    <jreVersionErr>This app requires Java 11 or higher. Download it free at adoptium.net</jreVersionErr>
+    <launcherErr>Could not launch Student Budget Tracker. Try reinstalling Java from adoptium.net</launcherErr>
+    <instanceAlreadyExistsMsg>Student Budget Tracker is already running.</instanceAlreadyExistsMsg>
+  </messages>
+</launch4jConfig>
