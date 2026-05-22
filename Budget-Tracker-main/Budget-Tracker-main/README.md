@@ -234,11 +234,4 @@ StudentBudgetTracker/
 
 ---
 
-## 👤 Author
-
-Made by **MysteGUI**  
-Built as a personal project for student budget management.
-
----
-
 *Track it. Save it. Don't blow it.*
