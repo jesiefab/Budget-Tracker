@@ -1,0 +1,25 @@
+# Build output
+dist/
+*.class
+bin/
+
+# Legacy build outputs inside Desktop/ (IDEs, old jpackage/Launch4j runs)
+Desktop/bin/
+Desktop/input/
+Desktop/output/
+
+# Agent scratch
+.freebuff/
+
+# Android
+Android/**/build/
+Android/**/.gradle/
+.gradle/
+local.properties
+*.apk
+*.aab
+
+# Logs / OS noise
+*.log
+Thumbs.db
+.DS_Store
