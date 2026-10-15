@@ -138,10 +138,20 @@ Artifacts land in `dist/`:
 | File | What it is |
 |---|---|
 | `dist/BudgetTracker/BudgetTracker.exe` | Self-contained app — bundled Java runtime, so the target PC needs no Java |
-| `dist/BudgetTracker-3.0.0-Setup.exe` | Single-file installer with Start Menu entry and uninstaller (needs [WiX Toolset 3.x](https://github.com/wixtoolset/wix3/releases) installed once) |
+| `dist/BudgetTracker-3.0.0-Setup.exe` | Single-file installer with Start Menu entry and uninstaller (needs [WiX Toolset 3.x](https://github.com/wixtoolset/wix3/releases) at build time — **no admin rights required**) |
 | `dist/BudgetTracker-3.0.0-windows-x64.zip` | Zipped app folder, ready to send to someone |
 
 Run the audit-fix verification harness with `tests/run-tests.bat` or `./tests/run-tests.sh`.
+
+**WiX without admin rights:** the build scripts look for WiX in `%WIX%`, then `%USERPROFILE%\.wix314\bin`, then `Program Files (x86)`. To set up the user-local copy (no installer, no UAC prompt):
+
+```powershell
+# PowerShell
+mkdir $env:USERPROFILE\.wix314
+curl.exe -L -o $env:TEMP\wix.zip https://github.com/wixtoolset/wix3/releases/download/wix3141rtm/wix314-binaries.zip
+Expand-Archive $env:TEMP\wix.zip $env:USERPROFILE\.wix314 -Force
+Remove-Item $env:TEMP\wix.zip
+```
 
 ### Android
 
