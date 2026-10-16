@@ -8,15 +8,15 @@ Available on **Windows desktop** and **Android**. No internet connection require
 
 ## 📥 Download
 
-Head to the [Releases](../../releases) page and download the latest version for your platform.
+Head to the [Releases](../../releases) page and download the latest Windows build.
 
-| Platform | File | Requirements |
+| File | What it is | Requirements |
 |---|---|---|
-| Windows | `BudgetTracker.exe` | None — the Java runtime is bundled |
-| Android | `BudgetTracker.apk` | Android 8.0 or higher |
+| `BudgetTracker-3.0.0-Setup.exe` | Installer — adds a Start Menu entry, a desktop shortcut and an uninstaller | None — the Java runtime is bundled, and **no admin rights are needed** |
+| `BudgetTracker-3.0.0-windows-x64.zip` | Portable app folder — unzip it anywhere and run `BudgetTracker.exe` | None — the Java runtime is bundled |
 
-> **Windows:** Nothing to install — just run the `.exe`.  
-> **Android:** Enable **Install from unknown sources** in Settings → Security before installing the APK.
+> **Windows:** the installer is per-user, so it never asks for an administrator password.  
+> **Android:** the APK is not published here — build it from source in Android Studio (see below).
 
 ---
 
