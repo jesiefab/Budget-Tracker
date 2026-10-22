@@ -20,6 +20,22 @@ Head to the [Releases](../../releases) page and download the latest Windows buil
 
 ---
 
+## 🤖 Agent Onboarding
+
+Development of this app is spec-driven, in three phases with hard scope gates:
+
+| Phase | File | Read it for | Editing code allowed? |
+|---|---|---|---|
+| 1 | [requirements.md](requirements.md) | WHAT we build — R1–R8 requirement IDs, acceptance criteria | ❌ |
+| 2 | [design.md](design.md) | HOW — architecture, save format, math, traceability to R# | ❌ |
+| 3 | [tasks.md](tasks.md) | Steps — checked tasks authorize code changes | ✅ checked tasks only |
+
+- The working contract lives in [agent-rules.md](agent-rules.md) (read at session start — it governs scope, commits, and the do-not-touch list).
+- [spec-workflow.md](spec-workflow.md) explains the discipline and checklists that keep this sustainable.
+- Run `./scripts/check-spec.sh` first; it verifies spec traceability is intact and fails loudly if any change broke it.
+
+---
+
 ## ✨ Features
 
 ### 💸 Expense Tracking
