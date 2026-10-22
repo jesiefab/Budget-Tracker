@@ -2,6 +2,8 @@
 dist/
 *.class
 bin/
+target/
+app/target/
 
 # Legacy build outputs inside Desktop/ (IDEs, old jpackage/Launch4j runs)
 Desktop/bin/

@@ -37,7 +37,7 @@
 
 ## Framework rebuild — approved stack pivot (gated, not started)
 
-- [ ] **T9 — Scaffold the new Maven project `app/` + bootstrap adapter.** *R-all (structural groundwork)*
+- [x] **T9 — Scaffold the new Maven project `app/` + bootstrap adapter.** *R-all (structural groundwork)*
   Files: `app/pom.xml` (Spring Boot 4.1.x parent, OpenJFX 25 deps via `javafx-maven-plugin`, spring-boot-starter-test), `app/src/main/java/…/BudgetTrackerApp.java`
   Done when: `mvn -pl app javafx:run` opens an empty window; Spring context boots with `WebApplicationType.NONE` via `init()` → `SpringApplicationBuilder`; `stop()` closes the context cleanly; `mvn test` green on a boot smoke test. Follow design.md § Bootstrap exactly (research-backed, avoids the known loader/product pitfalls).
 
