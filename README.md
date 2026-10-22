@@ -241,6 +241,14 @@ StudentBudgetTracker/
 
 ## 🔄 Changelog
 
+### v3.0.1
+- **Save-data integrity hardening** — saves now write to a temp file and swap atomically, so a crash mid-save can never tear the file
+- The previous save becomes `.bak` only after a successful write; a missing `.dat` now falls back to `.bak` on startup instead of silently starting fresh
+- Corrupt save files are detected and follow the backup path instead of loading half-parsed defaults
+- Expense fields with `|` or `\` now save and reload byte-identically (new v3 save format; v2 files still load, defaulting untagged expenses to Need)
+- Budget proration uses real month lengths (28–31 days, leap years included) — no more hard-coded 30/365 drift; the `Day X of N` display agrees with the math
+- Level is always re-derived from total XP on load — a stale or hand-edited `LEVEL=` line can no longer desync the XP bar or title
+
 ### v3.0
 - Added a custom **top navigation bar** — logo, app name, rounded nav buttons (Expenses, Budget, Savings, History), and a gear icon for Settings on the far right; Settings is no longer a tab
 - Added **Need / Want tagging** for expenses — each expense is tagged at entry time via a two-button toggle; the tag is shown in the expense list, the History table, and is saved to disk
