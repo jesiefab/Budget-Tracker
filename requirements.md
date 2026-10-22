@@ -119,7 +119,7 @@ A budgeting app built for **Filipino students** to track expenses (₱), manage 
 - **Money is ₱ (PHP)** throughout; no multi-currency.
 - **No network code anywhere.** No cloud sync, no accounts, no crash reporters.
 - **Stack (approved pivot, 2026-10-22):** Java stays the language. The rebuilt desktop app runs on **Spring Boot 4.1.x** (application core) + **OpenJFX 25 / JavaFX** (presentation layer) + **SQLite via sqlite-jdbc with Flyway migrations** (persistence) + **Maven** (build). The legacy Swing app stays frozen in `Desktop/` until the rebuild reaches feature parity — see [design.md](design.md) § Stack and § Migration.
-- The automated harness ([tests/Tests.java](tests/Tests.java)) must stay green (24/24) after every change; it compiles the real shipped sources.
+- The automated harness ([tests/Tests.java](tests/Tests.java)) must stay green after every change; it compiles the real shipped sources. (Count note: the removed twin suite took the tally from 24 to 12 checks in T4 — a deliberate scope removal, not weakened assertions; app-stack tasks T10/T11 add their own counts.)
 
 ## In Scope / Out of Scope
 

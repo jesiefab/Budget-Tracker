@@ -38,7 +38,7 @@ When reality changes mid-build (a formula was wrong, a response shape differs, a
 ## Checklist before a session ends
 
 - [ ] `scripts/check-spec.sh` passes
-- [ ] harness (`tests/run-tests.sh`) still 24/24 / exit 0 after any code change
+- [ ] harness (`tests/run-tests.sh`) all checks passing / exit 0 after any code change
 - [ ] any discovery change-request-logged
 - [ ] any spec edit traceable (`R#` added upstream before appearing downstream)
 - [ ] spec patches pushed as their own commit when a task was committed

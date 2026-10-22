@@ -24,10 +24,11 @@
   Files: none (verification only)
   Done when: `.bat` path executed, exit 0 captured. Previously only the `.sh` path was run.
 
-- [ ] **T4 — Retire the twin core.** *R8, R4.6, R2.3 (removes duplicate truth)*
+- [x] **T4 — Retire the twin core.** *R8, R4.6, R2.3 (removes duplicate truth)*
   Files: `src/main/java/`, `tests/Tests.java` (twin suite), `tests/run-tests.*`, README project-structure section
   Done when: `src/main/java` deleted or formally deprecated; `Tests.java` runs Desktop checks only (12 checks — expectation count updated, not weakened); harness green; README updated.
   Gate: needs user decision first — deprecate vs delete vs promote-twin-to-primary.
+  Resolution (user-delegated decision, 2026-10-22): **delete** — the twin was never packaged, its XP curve contradicted shipped balance (900-XP linear vs shipped 4500-XP quadratic), and its semantics re-land tests-first in app/ (T10/T11). README needed no edit (it never listed the tree).
 
 ## Next work — spec check automation
 
@@ -73,3 +74,4 @@ Append first, implement only after re-gating:
 |---|---|---|---|---|---|
 | 2026-10-22 | (initial scaffold) | Created this tasks.md as part of the spec scaffold approved by user | user-approved overhaul plan | Phase 1+2 done before any checkbox | applied |
 | 2026-10-22 | (scaffold — design) | **Stack pivot:** rebuild the desktop app on Spring Boot 4.1.x + OpenJFX 25 + SQLite/Flyway + Maven, Java stays the language | user decision: framework-based overhaul | requirements.md constraints + new R8.11 updated; design.md rewritten around the stack; swing tree frozen to bug-fixes | applied |
+| 2026-10-22 | T4 | Twin-core retirement shape settled as **delete**; harness tally 24→12 shipped checks | user delegated the decision; twin never packaged + curve contradiction | requirements.md harness constraint wording updated; spec-workflow checklist de-numbered; design.md had no twin references | applied |
