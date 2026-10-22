@@ -20,7 +20,7 @@
   Done when: `build-exe.bat` produces installer + zip from the fixed code; release assets replaced/published; README download table updated.
   Note: GitHub `v3.0.0` assets still ship pre-fix binaries — **requires explicit user authorization**.
 
-- [ ] **T3 — Exercise `run-tests.bat` once on Windows.** *R8 harness coverage*
+- [x] **T3 — Exercise `run-tests.bat` once on Windows.** *R8 harness coverage*
   Files: none (verification only)
   Done when: `.bat` path executed, exit 0 captured. Previously only the `.sh` path was run.
 
