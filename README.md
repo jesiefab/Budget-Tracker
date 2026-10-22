@@ -32,7 +32,7 @@ Development of this app is spec-driven, in three phases with hard scope gates:
 
 - The working contract lives in [agent-rules.md](agent-rules.md) (read at session start — it governs scope, commits, and the do-not-touch list).
 - [spec-workflow.md](spec-workflow.md) explains the discipline and checklists that keep this sustainable.
-- Run `./scripts/check-spec.sh` first; it verifies spec traceability is intact and fails loudly if any change broke it.
+- Run `./scripts/check-spec.sh` first — and again after **any** spec edit — it verifies traceability is intact and fails loudly (exit 1 vs 0) if a change broke it. Never commit a spec state that fails it; the script is executable in-repo and runs on Git Bash / WSL / Linux.
 
 ---
 

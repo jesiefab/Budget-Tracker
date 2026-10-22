@@ -32,9 +32,10 @@
 
 ## Next work — spec check automation
 
-- [ ] **T5 — Make `scripts/check-spec.sh` executable part of convention.** *R-all (spec hygiene)*
+- [x] **T5 — Make `scripts/check-spec.sh` executable part of convention.** *R-all (spec hygiene)*
   Files: `scripts/check-spec.sh`
   Done when: script has exec bit, runs on Git Bash/WSL/Linux, catches a deliberately-broken spec in dry-run, and its PASS output is shown in agent onboarding.
+  Evidence (2026-10-22): git mode 100755; negative dry-run (bogus citation appended to design.md) → `FAIL: IDs in design.md missing from requirements.md`, exit 1; restored → exit 0; README onboarding bullet and agent-rules commit rule now reference it as a hard gate.
 
 ## Framework rebuild — approved stack pivot (gated, not started)
 

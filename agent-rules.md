@@ -38,6 +38,7 @@ Phase 3  tasks.md          → checklist           · checked box = authorizatio
 
 ## Commits
 
+- Spec edits must pass `./scripts/check-spec.sh` **before** the commit that carries them; if it fails, fix the spec or revert — never commit a red scaffold.
 - One task → one commit, referencing the task ID, **only when the user asks for a commit** (project convention: never push or commit proactively).
 - Never discard/unstage user-owned edits; leave uncommitted work intact.
 
