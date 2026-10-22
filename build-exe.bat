@@ -4,8 +4,8 @@ rem Run from the repo root:   build-exe.bat
 rem
 rem Produces:
 rem   dist\BudgetTracker\BudgetTracker.exe       self-contained app (bundled Java runtime)
-rem   dist\BudgetTracker-3.0.0-Setup.exe         single-file installer (needs WiX Toolset 3.x)
-rem   dist\BudgetTracker-3.0.0-windows-x64.zip   zipped app folder for sharing
+rem   dist\BudgetTracker-3.0.1-Setup.exe         single-file installer (needs WiX Toolset 3.x)
+rem   dist\BudgetTracker-3.0.1-windows-x64.zip   zipped app folder for sharing
 rem
 rem Requirements: JDK 17+ (javac/jar/jpackage on PATH).
 rem
@@ -21,7 +21,7 @@ setlocal
 cd /d "%~dp0"
 
 set APP_NAME=BudgetTracker
-set APP_VERSION=3.0.0
+set APP_VERSION=3.0.1
 set VENDOR=MysteGUI
 set DESCRIPTION=Student Budget Tracker
 set ICON=Desktop\Savings Tracker Icon.ico

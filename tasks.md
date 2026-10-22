@@ -15,7 +15,7 @@
   Done when: working tree diff = only the ported fix surface; harness green; user asked-and-approved commit exists.
   Note: these fixes are **already implemented and verified (24/24 harness)** — this task is the commit + release step only.
 
-- [ ] **T2 — Cut the corrected release (`v3.0.1`).** *R8.x, R2.3, R4.6*
+- [x] **T2 — Cut the corrected release (`v3.0.1`).** *R8.x, R2.3, R4.6*
   Files: `dist/` artifacts, GitHub release, `README.md` download table, `Desktop/META-INF/MANIFEST.MF`
   Done when: `build-exe.bat` produces installer + zip from the fixed code; release assets replaced/published; README download table updated.
   Note: GitHub `v3.0.0` assets still ship pre-fix binaries — **requires explicit user authorization**.

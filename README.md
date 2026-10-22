@@ -12,8 +12,8 @@ Head to the [Releases](../../releases) page and download the latest Windows buil
 
 | File | What it is | Requirements |
 |---|---|---|
-| `BudgetTracker-3.0.0-Setup.exe` | Installer — adds a Start Menu entry, a desktop shortcut and an uninstaller | None — the Java runtime is bundled, and **no admin rights are needed** |
-| `BudgetTracker-3.0.0-windows-x64.zip` | Portable app folder — unzip it anywhere and run `BudgetTracker.exe` | None — the Java runtime is bundled |
+| `BudgetTracker-3.0.1-Setup.exe` | Installer — adds a Start Menu entry, a desktop shortcut and an uninstaller | None — the Java runtime is bundled, and **no admin rights are needed** |
+| `BudgetTracker-3.0.1-windows-x64.zip` | Portable app folder — unzip it anywhere and run `BudgetTracker.exe` | None — the Java runtime is bundled |
 
 > **Windows:** the installer is per-user, so it never asks for an administrator password.  
 > **Android:** the APK is not published here — build it from source in Android Studio (see below).
@@ -154,8 +154,8 @@ Artifacts land in `dist/`:
 | File | What it is |
 |---|---|
 | `dist/BudgetTracker/BudgetTracker.exe` | Self-contained app — bundled Java runtime, so the target PC needs no Java |
-| `dist/BudgetTracker-3.0.0-Setup.exe` | Single-file installer with Start Menu entry and uninstaller (needs [WiX Toolset 3.x](https://github.com/wixtoolset/wix3/releases) at build time — **no admin rights required**) |
-| `dist/BudgetTracker-3.0.0-windows-x64.zip` | Zipped app folder, ready to send to someone |
+| `dist/BudgetTracker-3.0.1-Setup.exe` | Single-file installer with Start Menu entry and uninstaller (needs [WiX Toolset 3.x](https://github.com/wixtoolset/wix3/releases) at build time — **no admin rights required**) |
+| `dist/BudgetTracker-3.0.1-windows-x64.zip` | Zipped app folder, ready to send to someone |
 
 Run the audit-fix verification harness with `tests/run-tests.bat` or `./tests/run-tests.sh`.
 

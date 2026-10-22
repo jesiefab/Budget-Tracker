@@ -4,8 +4,8 @@
 #
 # Produces:
 #   dist/BudgetTracker/BudgetTracker.exe       self-contained app (bundled Java runtime)
-#   dist/BudgetTracker-3.0.0-Setup.exe         single-file installer (needs WiX Toolset 3.x)
-#   dist/BudgetTracker-3.0.0-windows-x64.zip   zipped app folder for sharing
+#   dist/BudgetTracker-3.0.1-Setup.exe         single-file installer (needs WiX Toolset 3.x)
+#   dist/BudgetTracker-3.0.1-windows-x64.zip   zipped app folder for sharing
 #
 # Requirements: JDK 17+ (javac/jar/jpackage on PATH). The app itself needs no Java
 # on the machine that runs it - the runtime is bundled.
@@ -22,7 +22,7 @@ set -euo pipefail
 cd "$(dirname "$0")"
 
 APP_NAME="BudgetTracker"
-APP_VERSION="3.0.0"
+APP_VERSION="3.0.1"
 VENDOR="MysteGUI"
 DESCRIPTION="Student Budget Tracker"
 ICON="Desktop/Savings Tracker Icon.ico"
