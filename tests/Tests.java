@@ -1,7 +1,13 @@
-import edu.student.budgettracker.model.*;
+import edu.student.budgettracker.model.Category;
 import edu.student.budgettracker.model.DataStore;
-import edu.student.budgettracker.service.*;
+import edu.student.budgettracker.model.Expense;
+import edu.student.budgettracker.model.NeedWant;
+import edu.student.budgettracker.model.SavingsGoal;
 import edu.student.budgettracker.persistence.SaveManager;
+import edu.student.budgettracker.service.BudgetService;
+import edu.student.budgettracker.service.Money;
+import edu.student.budgettracker.service.SavingsService;
+import edu.student.budgettracker.service.XpService;
 import java.io.File;
 import java.io.FileWriter;
 import java.util.UUID;
@@ -40,6 +46,13 @@ public class Tests {
         testBudgetPeriod();
         try { testAtomicSave(); } catch (Exception e) { System.out.println("[FAIL] Atomic save (exception)"); failed++; }
         testDataIntegrity();
+
+        // Shipped-code checks (Desktop/*.java) run in their own class so its
+        // plain names resolve to the compiled Desktop classes rather than the
+        // src/ twin this file imports.
+        DesktopTests.runAll();
+        passed += DesktopTests.passed;
+        failed += DesktopTests.failed;
 
         System.out.println("\n==============================");
         System.out.println("PASSED: " + passed + "  FAILED: " + failed);

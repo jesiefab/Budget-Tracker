@@ -442,7 +442,7 @@ public class BudgetPanel extends JPanel {
         if (p == null) return;
         periodInfoLabel.setText(String.format(
                 "Day %d of %d in current %s  \u2014  budget resets to 0 on period change",
-                p.daysElapsed(), p.days, p.displayName.toLowerCase()
+                p.daysElapsed(), p.daysInPeriod(), p.displayName.toLowerCase()
         ));
     }
 
@@ -512,17 +512,18 @@ public class BudgetPanel extends JPanel {
         if (mode == DataStore.TrackingMode.ADVANCED) {
             budgetDisplayLabel.setText(String.format(
                     "%s Budget: \u20B1%.2f  (Day %d of %d)  \u2014  Needs: %.0f%%  /  Wants: %.0f%%",
-                    period.displayName, budget, elapsed, period.days,
+                    period.displayName, budget, elapsed, period.daysInPeriod(),
                     store.getNeedsPercent(), store.getWantsPercent()
             ));
         } else {
             budgetDisplayLabel.setText(String.format(
                     "%s Budget: \u20B1%.2f  (Day %d of %d)",
-                    period.displayName, budget, elapsed, period.days
+                    period.displayName, budget, elapsed, period.daysInPeriod()
             ));
         }
 
-        double dailyRate = period.days > 0 ? budget / period.days : 0;
+        int periodDays = period.daysInPeriod();
+        double dailyRate = periodDays > 0 ? budget / periodDays : 0;
         proratedInfoLabel.setText(String.format(
                 "Daily rate: \u20B1%.2f  \u2022  Prorated budget for today: \u20B1%.2f",
                 dailyRate, prorated

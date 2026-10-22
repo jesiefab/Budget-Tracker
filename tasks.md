@@ -10,7 +10,7 @@
 
 ## Current work — persistence hardening release (Phase-3 continuing)
 
-- [ ] **T1 — Commit the already-ported persistence fixes.** *R8.2, R8.3, R8.4, R8.5, R8.6, R8.7, R8.9, R8.10, R2.3, R4.6*
+- [x] **T1 — Commit the already-ported persistence fixes.** *R8.2, R8.3, R8.4, R8.5, R8.6, R8.7, R8.9, R8.10, R2.3, R4.6*
   Files: `Desktop/SaveManager.java`, `Desktop/DataStore.java`, `Desktop/BudgetPanel.java`, `tests/*`
   Done when: working tree diff = only the ported fix surface; harness green; user asked-and-approved commit exists.
   Note: these fixes are **already implemented and verified (24/24 harness)** — this task is the commit + release step only.

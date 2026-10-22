@@ -97,16 +97,14 @@ public class DataStore {
     // ── Budget Period enum ─────────────────────────────────────────────────────
 
     public enum BudgetPeriod {
-        WEEKLY ("Weekly",  7),
-        MONTHLY("Monthly", 30),
-        YEARLY ("Yearly",  365);
+        WEEKLY ("Weekly"),
+        MONTHLY("Monthly"),
+        YEARLY ("Yearly");
 
         public final String displayName;
-        public final int    days;
 
-        BudgetPeriod(String displayName, int days) {
+        BudgetPeriod(String displayName) {
             this.displayName = displayName;
-            this.days        = days;
         }
 
         @Override
@@ -116,6 +114,21 @@ public class DataStore {
             for (BudgetPeriod p : values())
                 if (p.displayName.equals(s)) return p;
             return MONTHLY;
+        }
+
+        /**
+         * Real length in days of the calendar period that contains today:
+         * WEEKLY = 7; MONTHLY = actual month length (28-31, leap years included);
+         * YEARLY = actual year length (365 or 366). Proration and daily
+         * allowance derived from this no longer drift on short or long months.
+         */
+        public int daysInPeriod() {
+            LocalDate now = LocalDate.now();
+            switch (this) {
+                case WEEKLY: return 7;
+                case YEARLY: return now.lengthOfYear();
+                default:     return now.lengthOfMonth(); // MONTHLY
+            }
         }
 
         /**
@@ -205,7 +218,7 @@ public class DataStore {
     public double getProratedBudget() {
         if (monthlyBudget <= 0) return 0;
         int elapsed = Math.max(1, budgetPeriod.daysElapsed());
-        return (monthlyBudget / budgetPeriod.days) * elapsed;
+        return (monthlyBudget / budgetPeriod.daysInPeriod()) * elapsed;
     }
 
     public double getRemainingProrated() {
@@ -213,7 +226,7 @@ public class DataStore {
     }
 
     public double getDailyAllowance() {
-        int daysLeft = budgetPeriod.days - budgetPeriod.daysElapsed();
+        int daysLeft = budgetPeriod.daysInPeriod() - budgetPeriod.daysElapsed();
         if (daysLeft <= 0) return 0;
         double remaining = monthlyBudget - getTotalExpensesForCurrentPeriod();
         return Math.max(remaining / daysLeft, 0);
@@ -224,7 +237,7 @@ public class DataStore {
     public double getNeedsProratedBudget() {
         if (getNeedsBudget() <= 0) return 0;
         int elapsed = Math.max(1, budgetPeriod.daysElapsed());
-        return (getNeedsBudget() / budgetPeriod.days) * elapsed;
+        return (getNeedsBudget() / budgetPeriod.daysInPeriod()) * elapsed;
     }
 
     public double getNeedsRemainingProrated() {
@@ -232,7 +245,7 @@ public class DataStore {
     }
 
     public double getNeedsDailyAllowance() {
-        int daysLeft = budgetPeriod.days - budgetPeriod.daysElapsed();
+        int daysLeft = budgetPeriod.daysInPeriod() - budgetPeriod.daysElapsed();
         if (daysLeft <= 0) return 0;
         double remaining = getNeedsBudget() - getNeedsSpentThisPeriod();
         return Math.max(remaining / daysLeft, 0);
@@ -243,7 +256,7 @@ public class DataStore {
     public double getWantsProratedBudget() {
         if (getWantsBudget() <= 0) return 0;
         int elapsed = Math.max(1, budgetPeriod.daysElapsed());
-        return (getWantsBudget() / budgetPeriod.days) * elapsed;
+        return (getWantsBudget() / budgetPeriod.daysInPeriod()) * elapsed;
     }
 
     public double getWantsRemainingProrated() {
@@ -251,7 +264,7 @@ public class DataStore {
     }
 
     public double getWantsDailyAllowance() {
-        int daysLeft = budgetPeriod.days - budgetPeriod.daysElapsed();
+        int daysLeft = budgetPeriod.daysInPeriod() - budgetPeriod.daysElapsed();
         if (daysLeft <= 0) return 0;
         double remaining = getWantsBudget() - getWantsSpentThisPeriod();
         return Math.max(remaining / daysLeft, 0);
@@ -351,8 +364,7 @@ public class DataStore {
         this.currentSavings -= actual;
         int xpPenalty = Math.max(1, (int) actual);
         this.totalXP  = Math.max(0, this.totalXP - xpPenalty);
-        // Recalculate level downward if XP dropped below current level threshold
-        while (level > 1 && totalXP < xpAtLevelStart()) level--;
+        while (level > 1 && totalXP < xpAtLevelStart(level)) level--;
         notifyListeners();
     }
 
@@ -394,13 +406,26 @@ public class DataStore {
 
     public int getTotalXP()         { return totalXP; }
     public int getLevel()           { return level; }
-    public int getXPForNextLevel()  { return 100 * level; }
-    public int getCurrentLevelXP() { return totalXP - xpAtLevelStart(); }
+    public int getXPForNextLevel()  { return 100 * level; } // shipped curve: harder each level
+    public int getCurrentLevelXP() { return totalXP - xpAtLevelStart(level); }
 
-    private int xpAtLevelStart() {
+    /** Total XP required to have entered the given level (100·1 + 100·2 + …). */
+    private static int xpAtLevelStart(int lvl) {
         int sum = 0;
-        for (int i = 1; i < level; i++) sum += 100 * i;
+        for (int i = 1; i < lvl; i++) sum += 100 * i;
         return sum;
+    }
+
+    /**
+     * Derives the level for a total-XP value — identical thresholds to the
+     * shipped awardXP()/withdrawSavings() leveling. restoreXP() uses this on
+     * load, so a save file's LEVEL line can never desync from actual XP.
+     */
+    public static int levelFromXP(int xp) {
+        int lvl   = 1;
+        int maxLv = TITLES.length - 1; // 10
+        while (lvl < maxLv && xp >= xpAtLevelStart(lvl) + 100 * lvl) lvl++;
+        return lvl;
     }
 
     public void awardXP(int xp) {
@@ -435,7 +460,8 @@ public class DataStore {
 
     public void restoreExpenses(List<Expense> saved)      { this.expenses = new ArrayList<>(saved); }
     public void restoreSavings(double savings)            { this.currentSavings = savings; }
-    public void restoreXP(int xp, int lvl)               { this.totalXP = xp; this.level = lvl; }
+    /** Restores XP and derives the level from it (the saved LEVEL is ignored). */
+    public void restoreXP(int xp, int ignoredLevel) { this.totalXP = Math.max(0, xp); this.level = levelFromXP(totalXP); }
     public void restoreBudgetPeriod(BudgetPeriod period)  { this.budgetPeriod = period; }
     public void restoreNeedsPercent(double percent)       { this.needsPercent = percent; }
     public void restoreTrackingMode(TrackingMode mode)    { this.trackingMode = mode; }
